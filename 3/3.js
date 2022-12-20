@@ -1,10 +1,3 @@
-// steam
-
-// declare a class GAME
-// 2 arguments, 'name' and 'price'
-// create 5 games with diff names and prices
-
-
 class Game {
     constructor(name, price) {
         this.name = name;
@@ -41,41 +34,35 @@ class SteamUser {
             throw Error("womp");
         }
     }
-    alphabeticalGames() {
-        this.games.sort();
-        console.log(this.games);
-
+    sortAz() {
+        this.games.sort((a, b) => a.name.localeCompare(b.name));
     }
+
+    sortGames(sortType){
+        if(sortType === "az"){
+            this.games.sort((a,b)=> a.name.localeCompare(b.name));
+          
+        } else if (sortType === "price") {
+            this.games.sort((a,b) => a.price - b.price);
+        }
+    }
+
+
 }
+      
+
 
 const user1 = new SteamUser(500);
 
-console.log(user1);
-console.log(game5);
 user1.buyGame(game1);
+user1.buyGame(game4);
+user1.buyGame(game3);
 user1.buyGame(game2);
-user1.wishList(game3);
+user1.wishList(game5);
 console.log(user1);
-user1.alphabeticalGames();
-
-
-// declare a class SteamUser
-// argument 'balance'
-// sets this property on the user
-// as well as empty games array
-
-// write a function that
-// lets user purchase a game
-// IF they have enough 'balance' to afford 'price' of game
-// if not, throw an error 
-
-// write a function that in SteamUser class
-// lets user add games to wishlist
-// if they already own the game, throw an error
-
-// write a function on SteamUser
-// that logs out users games alphabetically
-
-// change the function above, to take argument 'sortType'
-// allows user to decide to sort them alphabetically, or by price
-// more
+user1.sortAz();
+console.log(user1);
+user1.sortGames("price");
+console.log(user1.games);
+user1.sortGames("az");
+console.log(user1.games);
